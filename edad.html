@@ -8,27 +8,46 @@
         body { font-family: Arial, sans-serif; margin: 30px; }
         label, input { margin: 5px; }
         #resultado { margin-top: 15px; font-weight: bold; }
+        input[type="number"] { width: 70px; }
     </style>
 </head>
 <body>
     <h2>Calculadora de Edad</h2>
-    <label for="dia">Día:</label>
-    <input type="number" id="dia" min="1" max="31">
-    <label for="mes">Mes:</label>
-    <input type="number" id="mes" min="1" max="12">
-    <label for="anio">Año:</label>
-    <input type="number" id="anio" min="1900" max="2100">
-    <button onclick="calcularEdad()">Calcular Edad</button>
+    <form id="formEdad" onsubmit="calcularEdad(); return false;">
+        <label for="dia">Día:</label>
+        <input type="number" id="dia" min="1" max="31" required>
+        <label for="mes">Mes:</label>
+        <input type="number" id="mes" min="1" max="12" required>
+        <label for="anio">Año:</label>
+        <input type="number" id="anio" min="1900" max="2100" required>
+        <button type="submit">Calcular Edad</button>
+    </form>
     <p id="resultado"></p>
     <script>
+    // Enfocar el primer campo al cargar
+    window.onload = () => document.getElementById("dia").focus();
+
+    // Limpiar resultado al cambiar cualquier campo
+    ["dia", "mes", "anio"].forEach(id => {
+        document.getElementById(id).addEventListener("input", () => {
+            document.getElementById("resultado").innerText = "";
+        });
+    });
+
     function calcularEdad() {
         const dia = parseInt(document.getElementById("dia").value, 10);
         const mes = parseInt(document.getElementById("mes").value, 10);
         const anio = parseInt(document.getElementById("anio").value, 10);
+        const resultado = document.getElementById("resultado");
 
-        // Validar campos vacíos
-        if (!dia || !mes || !anio) {
-            document.getElementById("resultado").innerText = "Por favor, ingresa una fecha válida.";
+        // Validar campos vacíos o fuera de rango
+        if (
+            isNaN(dia) || isNaN(mes) || isNaN(anio) ||
+            dia < 1 || dia > 31 ||
+            mes < 1 || mes > 12 ||
+            anio < 1900 || anio > 2100
+        ) {
+            resultado.innerText = "Por favor, ingresa una fecha válida dentro del rango permitido.";
             return;
         }
 
@@ -39,7 +58,7 @@
             fechaNacimiento.getMonth() !== mes - 1 ||
             fechaNacimiento.getDate() !== dia
         ) {
-            document.getElementById("resultado").innerText = "La fecha ingresada no es válida.";
+            resultado.innerText = "La fecha ingresada no existe. Verifica el día, mes y año.";
             return;
         }
 
@@ -53,11 +72,17 @@
         }
 
         if (edad < 0) {
-            document.getElementById("resultado").innerText = "La fecha ingresada es en el futuro.";
+            resultado.innerText = "La fecha ingresada es en el futuro. Ingresa una fecha válida.";
             return;
         }
 
-        document.getElementById("resultado").innerText = "Edad: " + edad + " años";
+        if (edad === 0) {
+            resultado.innerText = "¡Tienes menos de un año!";
+        } else if (edad === 1) {
+            resultado.innerText = "Edad: 1 año";
+        } else {
+            resultado.innerText = "Edad: " + edad + " años";
+        }
     }
     </script>
 </body>
