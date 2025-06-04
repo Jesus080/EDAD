@@ -1,8 +1,14 @@
-<!DOCTYPE html><html lang="es">
+<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Edad</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        label, input { margin: 5px; }
+        #resultado { margin-top: 15px; font-weight: bold; }
+    </style>
 </head>
 <body>
     <h2>Calculadora de Edad</h2>
@@ -13,30 +19,46 @@
     <label for="anio">Año:</label>
     <input type="number" id="anio" min="1900" max="2100">
     <button onclick="calcularEdad()">Calcular Edad</button>
-    <p id="resultado"></p><script>
+    <p id="resultado"></p>
+    <script>
     function calcularEdad() {
-        let dia = document.getElementById("dia").value;
-        let mes = document.getElementById("mes").value;
-        let anio = document.getElementById("anio").value;
+        const dia = parseInt(document.getElementById("dia").value, 10);
+        const mes = parseInt(document.getElementById("mes").value, 10);
+        const anio = parseInt(document.getElementById("anio").value, 10);
 
+        // Validar campos vacíos
         if (!dia || !mes || !anio) {
-            document.getElementById("resultado").innerText = "Por favor, Ingresa una Fecha válida.";
+            document.getElementById("resultado").innerText = "Por favor, ingresa una fecha válida.";
             return;
         }
 
-        let fechaNacimiento = new Date(anio, mes - 1, dia);
-        let hoy = new Date();
-        let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
-        let mesActual = hoy.getMonth();
-        let diaActual = hoy.getDate();
+        // Validar fecha real
+        const fechaNacimiento = new Date(anio, mes - 1, dia);
+        if (
+            fechaNacimiento.getFullYear() !== anio ||
+            fechaNacimiento.getMonth() !== mes - 1 ||
+            fechaNacimiento.getDate() !== dia
+        ) {
+            document.getElementById("resultado").innerText = "La fecha ingresada no es válida.";
+            return;
+        }
 
-        if (mesActual < (mes - 1) || (mesActual === (mes - 1) && diaActual < dia)) {
+        const hoy = new Date();
+        let edad = hoy.getFullYear() - anio;
+        if (
+            hoy.getMonth() < (mes - 1) ||
+            (hoy.getMonth() === (mes - 1) && hoy.getDate() < dia)
+        ) {
             edad--;
+        }
+
+        if (edad < 0) {
+            document.getElementById("resultado").innerText = "La fecha ingresada es en el futuro.";
+            return;
         }
 
         document.getElementById("resultado").innerText = "Edad: " + edad + " años";
     }
-</script>
-
+    </script>
 </body>
 </html>
