@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panel del Cliente - VetCare</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5fefe;
+      color: #333;
+    }
+
+    header {
+      background-color: #009999;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.3rem;
+    }
+
+    nav {
+      background-color: #007777;
+      display: flex;
+      padding: 0.5rem 2rem;
+    }
+
+    nav a {
+      color: white;
+      margin-right: 1.5rem;
+      text-decoration: none;
+      padding: 0.5rem;
+      border-radius: 5px;
+    }
+
+    nav a:hover {
+      background-color: #005f5f;
+    }
+
+    .main {
+      padding: 2rem;
+    }
+
+    .section-title {
+      color: #008080;
+      margin-bottom: 1rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background-color: #ffffff;
+      padding: 1rem;
+      border-radius: 1rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #009999;
+    }
+
+    .card p {
+      margin: 0.3rem 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+      background-color: #e0f7f7;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>VetCare - Mi Panel</h1>
+    <div>🐾 Hola, Carlos</div>
+  </header>
+
+  <nav>
+    <a href="#">🏠 Inicio</a>
+    <a href="#">🐶 Mis Mascotas</a>
+    <a href="#">📅 Citas</a>
+    <a href="#">📋 Historial Médico</a>
+    <a href="#">👤 Mi Perfil</a>
+    <a href="#">🚪 Cerrar Sesión</a>
+  </nav>
+
+  <main class="main">
+    <h2 class="section-title">Resumen de tu Cuenta</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>🐶 Mascota: Max</h3>
+        <p>Especie: Perro</p>
+        <p>Raza: Labrador</p>
+        <p>Edad: 4 años</p>
+      </div>
+      <div class="card">
+        <h3>📅 Próxima Cita</h3>
+        <p>10 de junio de 2025</p>
+        <p>Consulta general - 10:30 AM</p>
+      </div>
+      <div class="card">
+        <h3>📋 Último Diagnóstico</h3>
+        <p>Otitis leve</p>
+        <p>Recetado: Gotas óticas (5 días)</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
