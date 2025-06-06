@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Panel Veterinaria</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f8f8;
+      color: #333;
+    }
+
+    header {
+      background-color: #008080;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .sidebar {
+      background-color: #006666;
+      width: 220px;
+      height: 100vh;
+      padding-top: 2rem;
+      position: fixed;
+      top: 0;
+      left: 0;
+      color: white;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar li {
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      border-bottom: 1px solid #005050;
+    }
+
+    .sidebar li:hover {
+      background-color: #004d4d;
+    }
+
+    .main-content {
+      margin-left: 220px;
+      padding: 2rem;
+    }
+
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .card {
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 0.7rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #008080;
+    }
+
+    .card p {
+      margin: 0.5rem 0 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #e0f0f0;
+      color: #555;
+      margin-top: 2rem;
+    }
+
+    @media screen and (max-width: 768px) {
+      .sidebar {
+        display: none;
+      }
+
+      .main-content {
+        margin-left: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>VetCare - Panel de Administración</h1>
+    <div>👩‍⚕️ Admin</div>
+  </header>
+
+  <nav class="sidebar">
+    <ul>
+      <li>🏠 Inicio</li>
+      <li>🐶 Mascotas</li>
+      <li>👥 Clientes</li>
+      <li>📅 Citas</li>
+      <li>🩺 Veterinarios</li>
+      <li>⚙️ Configuración</li>
+      <li>🚪 Cerrar Sesión</li>
+    </ul>
+  </nav>
+
+  <main class="main-content">
+    <h2>Resumen General</h2>
+    <div class="card-container">
+      <div class="card">
+        <h3>🐾 Mascotas registradas</h3>
+        <p>132</p>
+      </div>
+      <div class="card">
+        <h3>👥 Clientes activos</h3>
+        <p>98</p>
+      </div>
+      <div class="card">
+        <h3>📅 Citas hoy</h3>
+        <p>7</p>
+      </div>
+      <div class="card">
+        <h3>🩺 Veterinarios</h3>
+        <p>4 disponibles</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 VetCare. Todos los derechos reservados.
+  </footer>
+
+</body>
+</html>
